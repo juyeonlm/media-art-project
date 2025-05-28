@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     
-    <!-- ✅ p5.js & Sound -->
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/addons/p5.sound.min.js"></script>
-
     <!-- ✅ Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 
-    <!-- ✅ 스타일: 여백 제거 & 전체화면 -->
+    <!-- ✅ p5.js -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
+
+    <!-- ✅ 스타일: 여백 제거 및 전체화면 대응 -->
     <style>
       html, body {
         margin: 0;
@@ -22,13 +22,15 @@
       }
       canvas {
         display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
       }
     </style>
 
     <title>Memory Tabs</title>
   </head>
   <body>
-    <main></main>
     <script src="sketch.js"></script>
   </body>
 </html>
