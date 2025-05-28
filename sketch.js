@@ -4,7 +4,7 @@ const firebaseConfig = {
   authDomain: "midea-art-project.firebaseapp.com",
   databaseURL: "https://midea-art-project-default-rtdb.firebaseio.com",
   projectId: "midea-art-project",
-  storageBucket: "midea-art-project.firebaseapp.com",
+  storageBucket: "midea-art-project.firebasestorage.app",
   messagingSenderId: "826265566034",
   appId: "1:826265566034:web:1e133a6e7145e59339588b",
   measurementId: "G-K8NFG4CEES"
@@ -20,23 +20,29 @@ let tabCount = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  cam = createCapture(VIDEO, () => {
-    cam.size(windowWidth, windowHeight);
-  });
+  cam = createCapture(VIDEO);
+  cam.size(width, height);
   cam.hide();
 
   // 입력창 생성
   inputField = createInput();
+  inputField.position(20, height - 50);
   inputField.size(300);
   inputField.attribute('placeholder', '지금 떠오르는 기억이나 생각을 입력해주세요');
   inputField.style('font-size', '16px');
-  positionInputField();
 }
 
 function draw() {
   background(0);
   tint(255, map(tabCount, 0, 20, 255, 60));
   image(cam, 0, 0, width, height);
+}
+
+// ✅ 창 크기 변경 시 모든 요소 재조정
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  cam.size(windowWidth, windowHeight);
+  inputField.position(20, height - 50);
 }
 
 function keyPressed() {
@@ -58,7 +64,7 @@ function keyPressed() {
 function createMemoryTab(text) {
   const totalTabs = 10;
   const tabsPerStep = 2;
-  const delayPerStep = 200;
+  const delayPerStep = 200; // ms
 
   for (let step = 0; step < totalTabs / tabsPerStep; step++) {
     setTimeout(() => {
@@ -74,7 +80,7 @@ function createMemoryTab(text) {
         tab.style('box-shadow', '3px 3px 10px rgba(0,0,0,0.2)');
         tab.style('font-family', 'sans-serif');
         tab.style('overflow', 'hidden');
-        tab.position(random(20, windowWidth - 320), random(20, windowHeight - 180));
+        tab.position(random(20, width - 320), random(20, height - 180));
 
         let topBar = createDiv();
         topBar.style('background', '#f5f5f5');
@@ -105,6 +111,7 @@ function createMemoryTab(text) {
   }
 }
 
+// ✨ 텍스트에 무작위 특수기호 삽입
 function distortText(original) {
   let specialChars = ['%', '&', '/', '*', '#', '@', '!', '$'];
   let result = '';
@@ -117,14 +124,4 @@ function distortText(original) {
   }
 
   return result;
-}
-
-function positionInputField() {
-  inputField.position(20, windowHeight - 50);
-}
-
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-  cam.size(windowWidth, windowHeight);
-  positionInputField();
 }
