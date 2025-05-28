@@ -2,7 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <!-- p5.js & Sound -->
+    
+    <!-- ✅ p5.js & Sound -->
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/addons/p5.sound.min.js"></script>
 
@@ -10,7 +11,20 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- ✅ 스타일: 여백 제거 & 전체화면 -->
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        height: 100%;
+        background: black;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+
     <title>Memory Tabs</title>
   </head>
   <body>
