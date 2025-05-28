@@ -4,7 +4,7 @@ const firebaseConfig = {
   authDomain: "midea-art-project.firebaseapp.com",
   databaseURL: "https://midea-art-project-default-rtdb.firebaseio.com",
   projectId: "midea-art-project",
-  storageBucket: "midea-art-project.firebasestorage.app",
+  storageBucket: "midea-art-project.firebaseapp.com",
   messagingSenderId: "826265566034",
   appId: "1:826265566034:web:1e133a6e7145e59339588b",
   measurementId: "G-K8NFG4CEES"
@@ -26,15 +26,15 @@ function setup() {
 
   // 입력창 생성
   inputField = createInput();
-  inputField.position(20, height - 50);
   inputField.size(300);
   inputField.attribute('placeholder', '지금 떠오르는 기억이나 생각을 입력해주세요');
   inputField.style('font-size', '16px');
+  positionInputField();
 }
 
 function draw() {
   background(0);
-  tint(255, map(tabCount, 0, 20, 255, 60));
+  tint(255, map(tabCount, 0, 20, 255, 60)); // 탭이 많아질수록 흐려짐
   image(cam, 0, 0, width, height);
 }
 
@@ -57,7 +57,7 @@ function keyPressed() {
 function createMemoryTab(text) {
   const totalTabs = 10;
   const tabsPerStep = 2;
-  const delayPerStep = 200; // ms
+  const delayPerStep = 200; // 밀리초 단위
 
   for (let step = 0; step < totalTabs / tabsPerStep; step++) {
     setTimeout(() => {
@@ -117,4 +117,16 @@ function distortText(original) {
   }
 
   return result;
+}
+
+// ✅ 입력창 위치 재조정 함수
+function positionInputField() {
+  inputField.position(20, windowHeight - 50);
+}
+
+// ✅ 창 크기 변경 시 반응형 처리
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  cam.size(windowWidth, windowHeight);
+  positionInputField();
 }
