@@ -20,8 +20,9 @@ let tabCount = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  cam = createCapture(VIDEO);
-  cam.size(width, height);
+  cam = createCapture(VIDEO, () => {
+    cam.size(windowWidth, windowHeight);
+  });
   cam.hide();
 
   // 입력창 생성
@@ -34,7 +35,7 @@ function setup() {
 
 function draw() {
   background(0);
-  tint(255, map(tabCount, 0, 20, 255, 60)); // 탭이 많아질수록 흐려짐
+  tint(255, map(tabCount, 0, 20, 255, 60));
   image(cam, 0, 0, width, height);
 }
 
@@ -57,7 +58,7 @@ function keyPressed() {
 function createMemoryTab(text) {
   const totalTabs = 10;
   const tabsPerStep = 2;
-  const delayPerStep = 200; // 밀리초 단위
+  const delayPerStep = 200;
 
   for (let step = 0; step < totalTabs / tabsPerStep; step++) {
     setTimeout(() => {
@@ -73,7 +74,7 @@ function createMemoryTab(text) {
         tab.style('box-shadow', '3px 3px 10px rgba(0,0,0,0.2)');
         tab.style('font-family', 'sans-serif');
         tab.style('overflow', 'hidden');
-        tab.position(random(20, width - 320), random(20, height - 180));
+        tab.position(random(20, windowWidth - 320), random(20, windowHeight - 180));
 
         let topBar = createDiv();
         topBar.style('background', '#f5f5f5');
@@ -104,7 +105,6 @@ function createMemoryTab(text) {
   }
 }
 
-// ✨ 텍스트에 무작위 특수기호 삽입
 function distortText(original) {
   let specialChars = ['%', '&', '/', '*', '#', '@', '!', '$'];
   let result = '';
@@ -119,12 +119,10 @@ function distortText(original) {
   return result;
 }
 
-// ✅ 입력창 위치 재조정 함수
 function positionInputField() {
   inputField.position(20, windowHeight - 50);
 }
 
-// ✅ 창 크기 변경 시 반응형 처리
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   cam.size(windowWidth, windowHeight);
