@@ -1,42 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- ✅ Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 
-    <!-- ✅ p5.js & Sound -->
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/addons/p5.sound.min.js"></script>
+  <!-- ✅ p5.js -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.min.js"></script>
 
-    <!-- ✅ Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+  <!-- ✅ p5.sound.js (사운드 기능용) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/addons/p5.sound.min.js"></script>
 
-    <!-- ✅ 스타일: 여백 제거 & 전체화면 -->
-    <style>
-      html, body {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        height: 100%;
-        background: black;
-      }
-      canvas {
-        display: block;
-      }
-      input {
-        position: absolute;
-        left: 20px;
-        bottom: 20px;
-        font-size: 16px;
-        z-index: 100;
-        width: 360px;
-      }
-    </style>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      overflow: hidden;
+      background: black;
+      width: 100vw;
+      height: 100vh;
+    }
+    canvas {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
 
-    <title>Memory Tabs</title>
-  </head>
-  <body>
-    <!-- ✅ p5.js sketch -->
-    <script src="sketch.js"></script>
-  </body>
-</html>
+  <title>Memory Popup</title>
+</head>
