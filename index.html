@@ -1,42 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Memory Project</title>
 
-    <!-- ✅ p5.js & Sound -->
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/addons/p5.sound.min.js"></script>
+  <!-- ✅ p5.js -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
 
-    <!-- ✅ Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+  <!-- ✅ Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 
-    <!-- ✅ 스타일: 여백 제거 & 전체화면 -->
-    <style>
-      html, body {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        height: 100%;
-        background: black;
-      }
-      canvas {
-        display: block;
-      }
-      input {
-        position: absolute;
-        left: 20px;
-        bottom: 20px;
-        font-size: 16px;
-        z-index: 100;
-        width: 360px;
-      }
-    </style>
+  <!-- ✅ Google Fonts: Noto Sans KR (전체 weight 포함, 올바르게 닫힘) -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
-    <title>Memory Tabs</title>
-  </head>
-  <body>
-    <!-- ✅ p5.js sketch -->
-    <script src="sketch.js"></script>
-  </body>
+  <!-- ✅ 완전한 여백 제거 및 캔버스 정렬 -->
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      overflow: hidden;
+      background: black;
+      width: 100vw;
+      height: 100vh;
+    }
+    canvas {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <script src="sketch.js"></script>
+</body>
 </html>
