@@ -1,3 +1,4 @@
+// ✅ Firebase 설정
 const firebaseConfig = {
   apiKey: "AIzaSyAIr3NTcE_RCe5l2m5EGLvIiQO0l9uvz_M",
   authDomain: "midea-art-project.firebaseapp.com",
@@ -15,14 +16,13 @@ const database = firebase.database();
 let cam;
 let inputField;
 let tabCount = 0;
-let triggerWords = [
-  "얼굴", "시발", "ㅅㅂ", "ㅆㅂ", "ㅈㄴ", "존나",
-  "개새끼", "개새", "새끼", "ㅅㄲ", "병신", "ㅂㅅ",
-  "씨발", "꺼져", "ㄲㅈ", "지랄", "ㅁㅊ", "미친",
-  "fuck", "shit", "ㅈㄹ"
-];
-
+let triggerWords = ["얼굴", "시발", "ㅅㅂ", "ㅆㅂ", "ㅈㄴ", "존나", "개새끼", "개새", "새끼", "ㅅㄲ", "병신","ㅂㅅ", "씨발", "꺼져","ㄲㅈ", "지랄", "ㅈㄹ", "ㅁㅊ", "미친", "fuck", "shit"];
 let captureImage;
+let soundEffect;
+
+function preload() {
+  soundEffect = loadSound("popup.mp3"); // ✅ 같은 경로에 popup.mp3 파일 필요
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -30,14 +30,12 @@ function setup() {
   cam.size(width, height);
   cam.hide();
 
-  // 입력창 생성
   inputField = createInput();
-  inputField.position(20, 20); // 상단에 위치
   inputField.size(360);
   inputField.attribute('placeholder', '지우고 싶은 기억이나 떠오르는 생각을 입력해주세요.');
   inputField.style('font-size', '16px');
-  inputField.style('z-index', '100'); // 항상 최상단
-  inputField.position(20, height - 40); // ✅ 왼쪽 하단
+  inputField.style('z-index', '100');
+  inputField.position(20, height - 40);
 }
 
 function draw() {
@@ -49,7 +47,7 @@ function draw() {
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   cam.size(windowWidth, windowHeight);
-  inputField.position(20, 20);
+  inputField.position(20, height - 40);
 }
 
 function keyPressed() {
@@ -68,7 +66,7 @@ function keyPressed() {
     const matched = triggerWords.some(word => lowerText.includes(word.toLowerCase()));
 
     if (matched) {
-      captureImage = cam.get(); // 웹캠 이미지 캡처
+      captureImage = cam.get();
       createImageTab(text, captureImage);
     } else {
       createMemoryTab(text);
@@ -95,6 +93,10 @@ function createImageTab(text, img) {
 }
 
 function createTabWithContent(distortedText, img) {
+  if (soundEffect && soundEffect.isLoaded()) {
+    soundEffect.play(); // ✅ 효과음 재생
+  }
+
   let tab = createDiv();
   tab.style('position', 'absolute');
   tab.style('width', '300px');
@@ -107,7 +109,7 @@ function createTabWithContent(distortedText, img) {
   tab.style('z-index', '10');
 
   let x = random(20, width - 320);
-  let y = random(60, height - 200); // 입력창 및 하단 방지
+  let y = random(60, height - 200);
   tab.position(x, y);
 
   let topBar = createDiv();
