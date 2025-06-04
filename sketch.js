@@ -21,7 +21,7 @@ let captureImage;
 let soundEffect;
 
 function preload() {
-  soundEffect = loadSound("popup.mp3"); // ✅ 같은 경로에 popup.mp3 파일 필요
+  soundEffect = loadSound("sound/popup.mp3"); // ✅ 같은 경로에 popup.mp3 파일 필요
 }
 
 function setup() {
